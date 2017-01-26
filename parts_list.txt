@@ -1,0 +1,34 @@
+Reference                     Description                                              Footprint
+R1,R3,R19-R21                 Resistor, 1k, 1%                                         0805
+R2,R5                         Resistor, 10k, 1%                                        0805
+R4                            Resistor, 27 ohm, 1%                                     0805
+R6,R8                         Precision resistor, 240k, 0.1% or better                 0805
+R7,R9,R15-R18                 Precision resistor, 75k, 0.1% or better                  0805
+R10                           Precision resistor, 10 ohm, 0.1% or better               0805
+R11                           Precision resistor, 1k, 0.1% or better                   0805
+R12                           Precision resistor, 100k, 0.1% or better                 0805
+R13                           Precision resistor, 18k, 0.1% or better                  0805
+R14                           Precision resistor, 2k, 0.1% or better                   0805
+C1-C8,C19                     Capacitor, 10 µF, ceramic                                1210
+C9-C16, C22,C23,C25,C27,C28   Capacitor, 0.1 µF, ceramic                               0805
+C17,C18,C26,C29               Capacitor, 12 pF, ceramic                                0805
+C20                           Capacitor, 3.3 nF, ceramic                               0805
+C21                           Capacitor, 10 nF, ceramic                                0805
+C24                           Capacitor, 4700 pF, ceramic                              0805
+D1,D2                         Schottky diode, dual, BAT721S                            SOT-23
+D3                            LED, 3mm, red                                            -
+D4                            LED, 3mm, dual red/green, common cathode                 -
+U1                            Switched-capacitor voltage convertor, LM2662             SOIC-8
+U2                            8-bit USB microcontroller, PIC16F1459                    SOIC-20W
+U3                            2.5V voltage reference, ADR421                           SOIC-8
+U4,U5                         A/D convertor, MCP3550 (choose suffix by region)         SOIC-8
+U6                            D/A convertor, DAC1220                                   SSOP-16
+U7                            Op-amp, quad, OPA4192                                    SOIC-14
+U8                            SPDT analog switch, DG449                                SOT-23-8
+U9                            Op-amp, dual, OPA2192                                    SOIC-8
+X1                            Crystal oscillator, 2.5 MHz                              HC49
+K1-K4                         Reed relay, Coto 9007-05-01                              SIP
+P1                            Mini USB receptacle, surface mount, type B               -
+P2                            Terminal block, through hole, 5 position, 3.5mm spacing  -
+P3                            Pin header, through hole, 6 pin                          -
+
