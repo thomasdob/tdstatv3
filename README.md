@@ -3,7 +3,7 @@ A USB-controlled potentiostat/galvanostat for thin-film battery characterization
 
 ## Introduction
 This repository contains all the necessary design files to build your own USB-controlled potentiostat/galvanostat.
-These files are intended as supplementary information accompanying the whitepaper at http://arxiv.org/pdf/TODO.
+These files are intended as supplementary information accompanying the whitepaper at https://arxiv.org/pdf/1701.07650.pdf.
 
 ## Repository contents
 
