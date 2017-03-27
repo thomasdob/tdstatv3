@@ -15,7 +15,7 @@ These files are intended as supplementary information accompanying the whitepape
 * `datasheets`: Datasheets in pdf format for the integrated circuits used in this design.
 * `drivers`: Libusb drivers for Windows (not necessary on other operating systems).
 
-###Files
+### Files
 * `full_schematic.pdf`: Complete schematic diagram in pdf format.
 * `parts_list.txt`: Complete parts list, useful when ordering components.
 * `pcb_3dview.png`: 3D renders of the PCB design, useful for verification of the PCB layout.
