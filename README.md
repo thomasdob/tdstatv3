@@ -21,6 +21,7 @@ These files are intended as supplementary information accompanying the whitepape
 * `pcb_3dview.png`: 3D renders of the PCB design, useful for verification of the PCB layout.
 * `pcb_fabrication_diagram.pdf`: Front side of PCB with component locations and values, useful for circuit assembly.
 * `photograph.jpg`: A photograph of the assembled circuit, using a PCB manufactured by [OSH Park](https://oshpark.com/).
+* `LICENSE`: a copy of the GNU GPLv3 license.
 * `README.md`: This file.
 
 ## USB access on Linux
@@ -34,6 +35,8 @@ This assumes that the current user is a member of the `plugdev` group, and that 
 as coded in the microcontroller firmware are used; if not, these values need to be adjusted.
 
 ## Credits
-
 * Thomas Dobbelaere
 * email: thomas.dobbelaere@ugent.be
+
+## License
+The contents of this repository are licensed under the GNU General Public License (GPL).
