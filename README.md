@@ -10,7 +10,7 @@ These files are intended as supplementary information accompanying the whitepape
 ### Directories
 * `kicad`: KiCad design files (schematic diagram and PCB layout).
 * `firmware`: Source code and compiled firmware for the PIC16F1459 microcontroller. Uses Microchip's XC8 compiler.
-* `python`: Contains `tdstatv3.py`; run this file with Python 2.7 to bring up a GUI measurement tool.
+* `python`: Contains `tdstatv3.py`; run this file with Python 3 to bring up a GUI measurement tool.
 * `gerber`: PCB design files in Gerber format, the universal standard for PCB manufacturing.
 * `datasheets`: Datasheets in pdf format for the integrated circuits used in this design.
 * `drivers`: Libusb drivers for Windows (not necessary on other operating systems).
