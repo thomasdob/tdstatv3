@@ -1,34 +1,33 @@
-Reference                     Description                                              Footprint
-R1,R3,R19-R21                 Resistor, 1k, 1%                                         0805
-R2,R5                         Resistor, 10k, 1%                                        0805
-R4                            Resistor, 27 ohm, 1%                                     0805
-R6,R8                         Precision resistor, 240k, 0.1% or better                 0805
-R7,R9,R15-R18                 Precision resistor, 75k, 0.1% or better                  0805
-R10                           Precision resistor, 10 ohm, 0.1% or better               0805
-R11                           Precision resistor, 1k, 0.1% or better                   0805
-R12                           Precision resistor, 100k, 0.1% or better                 0805
-R13                           Precision resistor, 18k, 0.1% or better                  0805
-R14                           Precision resistor, 2k, 0.1% or better                   0805
-C1-C8,C19                     Capacitor, 10 µF, ceramic                                1210
-C9-C16, C22,C23,C25,C27,C28   Capacitor, 0.1 µF, ceramic                               0805
-C17,C18,C26,C29               Capacitor, 12 pF, ceramic                                0805
-C20                           Capacitor, 3.3 nF, ceramic                               0805
-C21                           Capacitor, 10 nF, ceramic                                0805
-C24                           Capacitor, 4700 pF, ceramic                              0805
-D1,D2                         Schottky diode, dual, BAT721S                            SOT-23
-D3                            LED, 3mm, red                                            -
-D4                            LED, 3mm, dual red/green, common cathode                 -
-U1                            Switched-capacitor voltage convertor, LM2662             SOIC-8
-U2                            8-bit USB microcontroller, PIC16F1459                    SOIC-20W
-U3                            2.5V voltage reference, ADR421                           SOIC-8
-U4,U5                         A/D convertor, MCP3550 (choose suffix by region)         SOIC-8
-U6                            D/A convertor, DAC1220                                   SSOP-16
-U7                            Op-amp, quad, OPA4192                                    SOIC-14
-U8                            SPDT analog switch, DG449                                SOT-23-8
-U9                            Op-amp, dual, OPA2192                                    SOIC-8
-X1                            Crystal oscillator, 2.5 MHz                              HC49
-K1-K4                         Reed relay, Coto 9007-05-01                              SIP
-P1                            Mini USB receptacle, surface mount, type B               -
-P2                            Terminal block, through hole, 5 position, 3.5mm spacing  -
-P3                            Pin header, through hole, 6 pin                          -
-
+Reference                     Description                                              Footprint     Digikey part #
+R1,R3,R19-R21                 Resistor, 1k, 1%                                         0805          311-1.00KCRCT-ND
+R2,R5                         Resistor, 10k, 1%                                        0805          311-10.0KCRCT-ND
+R4                            Resistor, 27 ohm, 1%                                     0805          311-27.0CRCT-ND
+R6,R8                         Precision resistor, 240k, 0.1% or better                 0805          RG20N240KWCT-ND
+R7,R9,R15-R18                 Precision resistor, 75k, 0.1% or better                  0805          P75KBSCT-ND
+R10                           Precision resistor, 10 ohm, 0.1% or better               0805          A119971CT-ND
+R11                           Precision resistor, 1k, 0.1% or better                   0805          P1.0KDACT-ND
+R12                           Precision resistor, 100k, 0.1% or better                 0805          P100KDACT-ND
+R13                           Precision resistor, 18k, 0.1% or better                  0805          P18KDACT-ND
+R14                           Precision resistor, 2k, 0.1% or better                   0805          P2.0KDACT-ND
+C1-C8,C19                     Capacitor, 10 µF, ceramic                                1210          490-1867-1-ND
+C9-C16, C22,C23,C25,C27,C28   Capacitor, 0.1 µF, ceramic                               0805          399-1168-1-ND
+C17,C18,C26,C29               Capacitor, 12 pF, ceramic                                0805          1276-1120-1-ND
+C20                           Capacitor, 3.3 nF, ceramic                               0805          399-10070-1-ND
+C21                           Capacitor, 10 nF, ceramic                                0805          399-7992-1-ND
+C24                           Capacitor, 4700 pF, ceramic                              0805          399-1155-1-ND
+D1,D2                         Schottky diode, dual, BAT721S                            SOT-23        1727-3574-1-ND
+D3                            LED, 3mm, red                                            -             754-1590-ND
+D4                            LED, 3mm, dual red/green, common cathode                 -             754-1221-ND
+U1                            Switched-capacitor voltage convertor, LM2662             SOIC-8        LM2662MX/NOPBCT-ND
+U2                            8-bit USB microcontroller, PIC16F1459                    SOIC-20W      PIC16F1459-I/SO-ND
+U3                            2.5V voltage reference, ADR421                           SOIC-8        ADR421ARZ-ND
+U4,U5                         A/D convertor, MCP3550 (choose suffix by region)         SOIC-8        MCP3550-50(60)E/SN-ND
+U6                            D/A convertor, DAC1220                                   SSOP-16       DAC1220E-ND
+U7                            Op-amp, quad, OPA4192                                    SOIC-14       296-43159-1-ND
+U8                            SPDT analog switch, DG449                                SOT-23-8      DG449DS-T1-E3CT-ND
+U9                            Op-amp, dual, OPA2192                                    SOIC-8        296-42106-1-ND
+X1                            Crystal oscillator, 2.5 MHz                              HC49          X1003-ND
+K1-K4                         Reed relay, Coto 9007-05-01                              SIP           306-1063-ND
+P1                            Mini USB receptacle, surface mount, type B               -             609-4700-1-ND
+P2                            Terminal block, through hole, 5 position, 3.5mm spacing  -             277-5827-ND
+P3                            Pin header, through hole, 6 pin                          -             S1011EC-06-ND
