@@ -36,7 +36,7 @@ as coded in the microcontroller firmware are used; if not, these values need to 
 
 ## Credits
 * Thomas Dobbelaere
-* email: thomas.dobbelaere@ugent.be
+* email: thomas.dobbelaere@gmail.com
 
 ## License
 The contents of this repository are licensed under the GNU General Public License (GPL).
