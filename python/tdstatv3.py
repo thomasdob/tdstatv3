@@ -46,7 +46,7 @@ logging_enabled = False # Enable logging of potential and current in idle mode (
 if platform.system() != "Windows":
 	# On Linux/OSX, use the Qt timer
 	busyloop_interval = 0
-	qt_timer_period = 1e3*adcread_interval # convert to ms
+	qt_timer_period = int(1e3*adcread_interval) # convert to ms
 else:
 	# On MS Windows, system timing is inaccurate, so use a busy loop instead
 	busyloop_interval = adcread_interval
@@ -253,7 +253,7 @@ def connect_disconnect_usb():
 	usb_pid_string = str(hardware_usb_pid.text())
 	dev = usb.core.find(idVendor=int(usb_vid_string, 0), idProduct=int(usb_pid_string, 0))
 	if dev is None:
-		QtGui.QMessageBox.critical(mainwidget, "USB Device Not Found", "No USB device was found with VID %s and PID %s. Verify the vendor/product ID and check the USB connection."%(usb_vid_string,usb_pid_string))
+		QtWidgets.QMessageBox.critical(mainwidget, "USB Device Not Found", "No USB device was found with VID %s and PID %s. Verify the vendor/product ID and check the USB connection."%(usb_vid_string,usb_pid_string))
 	else:
 		hardware_usb_connectButton.setText("Disconnect")
 		log_message("USB Interface connected.")
@@ -269,7 +269,7 @@ def connect_disconnect_usb():
 
 def not_connected_errormessage():
 	"""Generate an error message stating that the device is not connected."""
-	QtGui.QMessageBox.critical(mainwidget, "Not connected", "This command cannot be executed because the USB device is not connected. Press the \"Connect\" button and try again.")
+	QtWidgets.QMessageBox.critical(mainwidget, "Not connected", "This command cannot be executed because the USB device is not connected. Press the \"Connect\" button and try again.")
 	
 def check_state(desired_states):
 	"""Check if the current state is in a given list. If so, return True; otherwise, show an error message and return False."""
@@ -277,7 +277,7 @@ def check_state(desired_states):
 		if state == 0:
 			not_connected_errormessage()
 		else:
-			QtGui.QMessageBox.critical(mainwidget, "Error", "This command cannot be executed in the current state.")
+			QtWidgets.QMessageBox.critical(mainwidget, "Error", "This command cannot be executed in the current state.")
 		return False
 	else:
 		return True
@@ -288,7 +288,7 @@ def send_command(command_string, expected_response, log_msg=None):
 		dev.write(0x01,command_string) # 0x01 = write address of EP1
 		response = bytes(dev.read(0x81,64)) # 0x81 = read address of EP1
 		if response != expected_response:
-			QtGui.QMessageBox.critical(mainwidget, "Unexpected Response", "The command \"%s\" resulted in an unexpected response. The expected response was \"%s\"; the actual response was \"%s\""%(command_string,expected_response.decode("ascii"),response.decode("ascii")))
+			QtWidgets.QMessageBox.critical(mainwidget, "Unexpected Response", "The command \"%s\" resulted in an unexpected response. The expected response was \"%s\"; the actual response was \"%s\""%(command_string,expected_response.decode("ascii"),response.decode("ascii")))
 		else:
 			if log_msg != None:
 				log_message(log_msg)
@@ -528,19 +528,19 @@ def set_output_from_gui():
 		try:
 			value = float(hardware_manual_control_output_entry.text())		
 		except ValueError:
-			QtGui.QMessageBox.critical(mainwidget, "Not a number", "The value you have entered is not a floating-point number.")
+			QtWidgets.QMessageBox.critical(mainwidget, "Not a number", "The value you have entered is not a floating-point number.")
 			return
 	elif value_units_index == 1: # Current (mA)
 		try:
 			value = float(hardware_manual_control_output_entry.text())
 		except ValueError:
-			QtGui.QMessageBox.critical(mainwidget, "Not a number", "The value you have entered is not a floating-point number.")
+			QtWidgets.QMessageBox.critical(mainwidget, "Not a number", "The value you have entered is not a floating-point number.")
 			return
 	elif value_units_index == 2: # DAC Code
 		try:
 			value = int(hardware_manual_control_output_entry.text())
 		except ValueError:
-			QtGui.QMessageBox.critical(mainwidget, "Not a number", "The value you have entered is not an integer number.")
+			QtWidgets.QMessageBox.critical(mainwidget, "Not a number", "The value you have entered is not an integer number.")
 			return
 	else:
 		return
@@ -574,7 +574,7 @@ def read_potential_current():
 			try:
 				print("%.2f\t%e\t%e"%(time_of_last_adcread,potential,current*1e-3),file=open(hardware_log_filename.text(),'a',1)) # Output tab-separated data containing time (in s), potential (in V), and current (in A)
 			except:
-				QtGui.QMessageBox.critical(mainwidget, "Logging error!", "Logging error!")
+				QtWidgets.QMessageBox.critical(mainwidget, "Logging error!", "Logging error!")
 				hardware_log_checkbox.setChecked(False) # Disable logging in case of file errors
 
 def idle_init():
@@ -630,39 +630,39 @@ def cv_getparams():
 		cv_parameters['filename'] = str(cv_file_entry.text())
 		return True
 	except ValueError:
-		QtGui.QMessageBox.critical(mainwidget, "Not a number", "One or more parameters could not be interpreted as a number.")
+		QtWidgets.QMessageBox.critical(mainwidget, "Not a number", "One or more parameters could not be interpreted as a number.")
 		return False
 
 def cv_validate_parameters():
 	"""Check if the chosen CV parameters make sense. If so, return True."""
 	if cv_parameters['ubound'] < cv_parameters['lbound']:
-		QtGui.QMessageBox.critical(mainwidget, "CV error", "The upper bound cannot be lower than the lower bound.")
+		QtWidgets.QMessageBox.critical(mainwidget, "CV error", "The upper bound cannot be lower than the lower bound.")
 		return False
 	if cv_parameters['scanrate'] == 0:
-		QtGui.QMessageBox.critical(mainwidget, "CV error", "The scan rate cannot be zero.")
+		QtWidgets.QMessageBox.critical(mainwidget, "CV error", "The scan rate cannot be zero.")
 		return False
 	if (cv_parameters['scanrate'] > 0) and (cv_parameters['ubound'] < cv_parameters['startpot']):
-		QtGui.QMessageBox.critical(mainwidget, "CV error", "For a positive scan rate, the start potential must be lower than the upper bound.")
+		QtWidgets.QMessageBox.critical(mainwidget, "CV error", "For a positive scan rate, the start potential must be lower than the upper bound.")
 		return False
 	if (cv_parameters['scanrate'] < 0) and (cv_parameters['lbound'] > cv_parameters['startpot']):
-		QtGui.QMessageBox.critical(mainwidget, "CV error", "For a negative scan rate, the start potential must be higher than the lower bound.")
+		QtWidgets.QMessageBox.critical(mainwidget, "CV error", "For a negative scan rate, the start potential must be higher than the lower bound.")
 		return False
 	if cv_parameters['numsamples'] < 1:
-		QtGui.QMessageBox.critical(mainwidget, "CV error", "The number of samples to average must be at least 1.")
+		QtWidgets.QMessageBox.critical(mainwidget, "CV error", "The number of samples to average must be at least 1.")
 		return False
 	return True
 
 def validate_file(filename):
 	"""Check if a filename can be written to. If so, return True."""
 	if os.path.isfile(filename):
-		if QtGui.QMessageBox.question(mainwidget, "File exists", "The specified output file already exists. Do you want to overwrite it?", QtGui.QMessageBox.Yes | QtGui.QMessageBox.No, QtGui.QMessageBox.No) != QtGui.QMessageBox.Yes:
+		if QtWidgets.QMessageBox.question(mainwidget, "File exists", "The specified output file already exists. Do you want to overwrite it?", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No, QtWidgets.QMessageBox.No) != QtWidgets.QMessageBox.Yes:
 			return False
 	try:
 		tryfile = open(filename, 'w', 1)
 		tryfile.close()
 		return True
 	except IOError:
-		QtGui.QMessageBox.critical(mainwidget, "File error", "The specified output file path is not valid.")
+		QtWidgets.QMessageBox.critical(mainwidget, "File error", "The specified output file path is not valid.")
 		return False
 
 def cv_scanrate_changed_callback():
@@ -800,28 +800,28 @@ def cd_getparams():
 		cd_parameters['filename'] = str(cd_file_entry.text())
 		return True
 	except ValueError:
-		QtGui.QMessageBox.critical(mainwidget, "Not a number", "One or more parameters could not be interpreted as a number.")
+		QtWidgets.QMessageBox.critical(mainwidget, "Not a number", "One or more parameters could not be interpreted as a number.")
 		return False
 
 def cd_validate_parameters():
 	"""Check if the chosen charge/discharge parameters make sense. If so, return True."""
 	if cd_parameters['ubound'] < cd_parameters['lbound']:
-		QtGui.QMessageBox.critical(mainwidget, "Charge/discharge error", "The upper bound cannot be lower than the lower bound.")
+		QtWidgets.QMessageBox.critical(mainwidget, "Charge/discharge error", "The upper bound cannot be lower than the lower bound.")
 		return False
 	if cd_parameters['chargecurrent'] == 0.:
-		QtGui.QMessageBox.critical(mainwidget, "Charge/discharge error", "The charge current cannot be zero.")
+		QtWidgets.QMessageBox.critical(mainwidget, "Charge/discharge error", "The charge current cannot be zero.")
 		return False
 	if cd_parameters['dischargecurrent'] == 0.:
-		QtGui.QMessageBox.critical(mainwidget, "Charge/discharge error", "The discharge current cannot be zero.")
+		QtWidgets.QMessageBox.critical(mainwidget, "Charge/discharge error", "The discharge current cannot be zero.")
 		return False
 	if cd_parameters['chargecurrent']*cd_parameters['dischargecurrent'] > 0:
-		QtGui.QMessageBox.critical(mainwidget, "Charge/discharge error", "Charge and discharge current must have opposite sign.")
+		QtWidgets.QMessageBox.critical(mainwidget, "Charge/discharge error", "Charge and discharge current must have opposite sign.")
 		return False
 	if cd_parameters['numcycles'] <= 0:
-		QtGui.QMessageBox.critical(mainwidget, "Charge/discharge error", "The number of half cycles must be positive and non-zero.")
+		QtWidgets.QMessageBox.critical(mainwidget, "Charge/discharge error", "The number of half cycles must be positive and non-zero.")
 		return False
 	if cd_parameters['numsamples'] < 1:
-		QtGui.QMessageBox.critical(mainwidget, "Charge/discharge error", "The number of samples to average must be at least 1.")
+		QtWidgets.QMessageBox.critical(mainwidget, "Charge/discharge error", "The number of samples to average must be at least 1.")
 		return False
 	return True
 
@@ -923,19 +923,19 @@ def rate_getparams():
 		rate_parameters['filename'] = str(rate_file_entry.text())
 		return True
 	except ValueError:
-		QtGui.QMessageBox.critical(mainwidget, "Not a number", "One or more parameters could not be interpreted as a number.")
+		QtWidgets.QMessageBox.critical(mainwidget, "Not a number", "One or more parameters could not be interpreted as a number.")
 		return False
 
 def rate_validate_parameters():
 	"""Check if the chosen charge/discharge parameters make sense. If so, return True."""
 	if rate_parameters['ubound'] < rate_parameters['lbound']:
-		QtGui.QMessageBox.critical(mainwidget, "Rate testing error", "The upper bound cannot be lower than the lower bound.")
+		QtWidgets.QMessageBox.critical(mainwidget, "Rate testing error", "The upper bound cannot be lower than the lower bound.")
 		return False
 	if 0. in rate_parameters['currents']:
-		QtGui.QMessageBox.critical(mainwidget, "Rate testing error", "The charge/discharge current cannot be zero.")
+		QtWidgets.QMessageBox.critical(mainwidget, "Rate testing error", "The charge/discharge current cannot be zero.")
 		return False
 	if rate_parameters['numcycles'] <= 0:
-		QtGui.QMessageBox.critical(mainwidget, "Charge/discharge error", "The number of half cycles must be positive and non-zero.")
+		QtWidgets.QMessageBox.critical(mainwidget, "Charge/discharge error", "The number of half cycles must be positive and non-zero.")
 		return False
 	return True
 
